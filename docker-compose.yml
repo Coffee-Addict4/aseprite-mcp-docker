@@ -1,0 +1,19 @@
+﻿version: '3.8'
+
+services:
+  aseprite-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aseprite-mcp-server
+    environment:
+      - ASEPRITE_MCP_MODE=mcp
+      - ASEPRITE_PATH=/usr/local/bin/aseprite
+    volumes:
+      # Mount directories for persistent data
+      - ./projects:/app/projects
+      - ./exports:/app/exports
+    restart: unless-stopped
+    # MCP mode uses stdin/stdout for communication
+    stdin_open: true
+    tty: true
