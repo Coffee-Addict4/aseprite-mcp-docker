@@ -13,6 +13,8 @@ services:
       # Mount directories for persistent data
       - ./projects:/app/projects
       - ./exports:/app/exports
+      # Mount user's Windows Downloads folder
+      - C:/Users/jadon/Downloads:/app/user_downloads
     restart: unless-stopped
     # MCP mode uses stdin/stdout for communication
     stdin_open: true

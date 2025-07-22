@@ -178,7 +178,17 @@ Add to your Claude Desktop configuration:
 ### Export Tools
 - `export_sprite(filename, output, format)` - Export to image formats
 - `export_animation(filename, output, format, scale)` - Export as animation
+
+### File Management
+- `route_file(source, destination, filename, overwrite)` - Route files to directories
+- `validate_output_directory(path)` - Validate directory permissions
 - `export_spritesheet(filename, output, format, layout)` - Export as sprite sheet
+
+### File Management
+- `route_file(source_file, destination_directory, filename, overwrite, create_dirs)` - Route completed files to user-defined output directories with validation
+- `validate_output_directory(directory_path, create_if_missing)` - Validate and prepare output directories
+- `list_output_files(directory_path, file_pattern, sort_by)` - List files in output directories with filtering
+- `cleanup_output_directory(directory_path, max_age_days, file_pattern, dry_run)` - Clean up old files from output directories
 
 ## 🏗️ Architecture
 
@@ -193,6 +203,7 @@ aseprite_mcp/
 │   ├── canvas.py        # Canvas management tools
 │   ├── drawing.py       # Drawing tools
 │   ├── export.py        # Export tools
+│   ├── file_router.py   # File routing and management tools
 │   └── __init__.py
 app.py                   # Docker/HTTP entry point
 tests/                   # Comprehensive test suite
@@ -260,13 +271,71 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Model Context Protocol](https://modelcontextprotocol.io/) - Protocol specification
 - [FastMCP](https://github.com/jlowin/fastmcp) - MCP server framework
 
-## 📊 Project Status
+## � File Router Tool
+
+The file router tool provides comprehensive file management capabilities for routing completed Aseprite files to user-defined output directories with extensive validation and safety checks.
+
+### Key Features
+
+- **Path Validation**: Verifies directory paths are accessible and valid
+- **Permission Checks**: Ensures write permissions before file operations
+- **Overwrite Protection**: Configurable overwrite behavior with conflict detection
+- **Directory Creation**: Automatic creation of missing directories
+- **Cross-Platform Paths**: Handles both Windows (`C:/Users/user/Downloads`) and Unix paths
+- **Comprehensive Logging**: Detailed operation logging for troubleshooting
+
+### Usage Examples
+
+```python
+# Route a file to user's Downloads folder
+await route_file(
+    source_file="/app/projects/sprite.png",
+    destination_directory="C:/Users/jadon/Downloads",
+    filename="my_sprite.png",
+    overwrite=True,
+    create_dirs=True
+)
+
+# Validate output directory
+await validate_output_directory(
+    directory_path="/exports",
+    create_if_missing=True
+)
+
+# List files in output directory
+await list_output_files(
+    directory_path="C:/Users/jadon/Downloads",
+    file_pattern="*.png",
+    sort_by="modified"
+)
+
+# Clean up old files
+await cleanup_output_directory(
+    directory_path="/exports",
+    max_age_days=30,
+    file_pattern="*.tmp",
+    dry_run=False
+)
+```
+
+### Error Handling
+
+The file router tool includes comprehensive error handling for:
+- Missing source files
+- Invalid destination paths
+- Permission denied errors
+- Disk space issues
+- Read-only file conflicts
+- Network path timeouts
+
+## �📊 Project Status
 
 - ✅ Core MCP functionality
 - ✅ Docker containerization
 - ✅ Comprehensive testing
 - ✅ Web interface
 - ✅ Documentation
+- ✅ File routing and management tools
 - 🔄 Advanced drawing features (in progress)
 - 🔄 Animation tools (planned)
 - 🔄 Plugin system (planned)

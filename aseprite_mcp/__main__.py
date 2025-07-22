@@ -4,7 +4,7 @@ import sys
 from typing import NoReturn
 
 from . import mcp
-from .tools import canvas, drawing, export  # noqa: F401
+from .tools import canvas, drawing, export, file_router  # noqa: F401
 
 
 def main() -> NoReturn:

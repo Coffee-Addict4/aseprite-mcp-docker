@@ -6,5 +6,6 @@ from __future__ import annotations
 from . import canvas  # noqa: F401
 from . import drawing  # noqa: F401
 from . import export  # noqa: F401
+from . import file_router  # noqa: F401
 
-__all__ = ["canvas", "drawing", "export"]
+__all__ = ["canvas", "drawing", "export", "file_router"]
