@@ -2,6 +2,7 @@
 
 A modern, containerized Model Context Protocol (MCP) server for interacting with the Aseprite sprite editor. This project provides AI assistants with the ability to create, edit, and export sprite graphics through a well-designed API.
 
+<<<<<<< HEAD
 ![Demo](https://github.com/user-attachments/assets/572edf75-ab66-4700-87ee-d7d3d196c597)
 
 ## 🚀 Features
@@ -129,6 +130,9 @@ black . && ruff check . && mypy . && pytest
 
 Add to your Claude Desktop configuration:
 
+=======
+## Installation:
+>>>>>>> parent of 739e3f4 (Add demo to README)
 ```json
 {
   "mcpServers": {
@@ -142,6 +146,7 @@ Add to your Claude Desktop configuration:
     }
   }
 }
+<<<<<<< HEAD
 ```
 
 ### Local Development Setup
@@ -345,3 +350,6 @@ The file router tool includes comprehensive error handling for:
 **Version**: 0.2.0  
 **Author**: Divyansh Singh  
 **Repository**: [aseprite-mcp-docker](https://github.com/Coffee-Addict4/aseprite-mcp-docker)
+=======
+```
+>>>>>>> parent of 739e3f4 (Add demo to README)
